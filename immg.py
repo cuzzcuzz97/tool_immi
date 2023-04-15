@@ -81,11 +81,9 @@ def download_audio_banmai():
     if step.text == '5/16':
         print('step: ', step.text)
         running('success','not status')
-        os.system('nohub python3 immg.py -u &')
     else:
         running(f'xảy ra sự cố , gọi admin để fix gấp ','status')
         running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-        os.system('nohub python3 immg.py -u &')
     # output = web.find_element('xpath','//*[@id="tts-audio"]')
     # URL = output.get_attribute('src')
     # return URL
@@ -94,6 +92,5 @@ try:
 except:
     running(f'xảy ra sự cố , gọi admin để fix gấp ','status')
     running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-    os.system('nohub python3 immg.py -u &')
 print('openning')
 
