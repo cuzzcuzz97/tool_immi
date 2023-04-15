@@ -89,7 +89,8 @@ def download_audio_banmai():
     # return URL
 try:
     download_audio_banmai()
-except:
+except Exception as e:
+    print(e)
     running(f'xảy ra sự cố , gọi admin để fix gấp ','status')
     running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
 print('openning')
