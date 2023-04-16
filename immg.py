@@ -20,10 +20,10 @@ data = {
 }
 
 def download_audio_banmai():
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    web = webdriver.Chrome(options=options)
-    # web = webdriver.Chrome()    
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("headless")
+    # web = webdriver.Chrome(options=options)
+    web = webdriver.Chrome()    
     web.get('https://online.immi.gov.au/lusc/login')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
@@ -84,8 +84,8 @@ def download_audio_banmai():
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
     else:
-        running(f'xảy ra sự cố , gọi admin để fix gấp ','status')
-        running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
+        running(f'xảy ra sự cố chờ trong giây lát ','status')
+        # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
     # output = web.find_element('xpath','//*[@id="tts-audio"]')
@@ -95,8 +95,8 @@ try:
     download_audio_banmai()
 except Exception as e:
     print(e)
-    running(f'xảy ra sự cố , gọi admin để fix gấp ','status')
-    running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
+    running(f'xảy ra sự cố chờ trong giây lát ','status')
+    # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
     os.system('nohup python3 immg.py -u &')
 print('openning')
