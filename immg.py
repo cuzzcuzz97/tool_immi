@@ -80,7 +80,9 @@ def download_audio_banmai():
             break
     if step.text == '5/16':
         print('step: ', step.text)
-        running('success','not status')
+        for i in range(40):
+            running('success','not status')
+            time.sleep(3)
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
     else:
@@ -88,9 +90,6 @@ def download_audio_banmai():
         # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
-    # output = web.find_element('xpath','//*[@id="tts-audio"]')
-    # URL = output.get_attribute('src')
-    # return URL
 try:
     download_audio_banmai()
 except Exception as e:
