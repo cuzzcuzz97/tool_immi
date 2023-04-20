@@ -70,7 +70,7 @@ def download_audio_banmai():
             if step.text == '4/16':
                 print('sending message')
                 send_message(f'\U0000274C Trang {step.text} : {formatted_datetime}')
-                # running(f'Trang {step.text} : {formatted_datetime}','status')
+                running(f'Trang {step.text} : {formatted_datetime}','status')
             warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
             print(warning.text)
             print('****************')
@@ -87,14 +87,14 @@ def download_audio_banmai():
     if step.text == '5/16':
         print('step: ', step.text)
         for i in range(40):
-            # running('success','not status')
+            running('success','not status')
             send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705')
             time.sleep(3)
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
     else:
         send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705')
-        # running(f'xảy ra sự cố chờ trong giây lát ','status')
+        running(f'xảy ra sự cố chờ trong giây lát ','status')
         # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
@@ -103,7 +103,7 @@ try:
 except Exception as e:
     print(e)
     send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705')
-    # running(f'xảy ra sự cố chờ trong giây lát ','status')
+    running(f'xảy ra sự cố chờ trong giây lát ','status')
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
     os.system('nohup python3 immg.py -u &')
