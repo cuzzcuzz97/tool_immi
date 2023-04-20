@@ -16,13 +16,15 @@ except:
 
 username = os.getenv('USERNAME_IMMI')
 password = os.getenv('PASSWORD_IMMI')
+baotinhtrang = os.getenv('baotinhtrang')
+baomo = os.getenv('baomo')
 #username = 'changhapham9@gmail.com'
 data = {
     'username' :username,
     'password' :password,
 }
 
-send_message(f'Khởi chạy lại phần mềm')
+send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 
 def download_audio_banmai():
     options = webdriver.ChromeOptions()
@@ -69,7 +71,7 @@ def download_audio_banmai():
             print('step: ', step.text)
             if step.text == '4/16':
                 print('sending message')
-                send_message(f'\U0000274C Trang {step.text} : {formatted_datetime}')
+                send_message(f'\U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
                 running(f'Trang {step.text} : {formatted_datetime}','status')
             warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
             print(warning.text)
@@ -88,12 +90,12 @@ def download_audio_banmai():
         print('step: ', step.text)
         for i in range(40):
             running('success','not status')
-            send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705')
+            send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
             time.sleep(3)
         time.sleep(60)
         os.system('nohup python3 immg.py -u &')
     else:
-        send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705')
+        send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
         running(f'xảy ra sự cố chờ trong giây lát ','status')
         # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
@@ -102,7 +104,7 @@ try:
     download_audio_banmai()
 except Exception as e:
     print(e)
-    send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705')
+    send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
     running(f'xảy ra sự cố chờ trong giây lát ','status')
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
