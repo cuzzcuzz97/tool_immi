@@ -30,10 +30,10 @@ except:
     os.system('nohup python3 immg.py -u &')
 
 def download_audio_banmai():
-    # options = webdriver.ChromeOptions()
-    # options.add_argument("headless")
-    # web = webdriver.Chrome(options=options)
-    web = webdriver.Chrome()    
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+    web = webdriver.Chrome(options=options)
+    # web = webdriver.Chrome()    
     web.get('https://online.immi.gov.au/lusc/login')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
