@@ -22,6 +22,8 @@ data = {
     'password' :password,
 }
 
+send_message(f'Khởi chạy lại phần mềm')
+
 def download_audio_banmai():
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
