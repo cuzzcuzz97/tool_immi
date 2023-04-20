@@ -12,25 +12,28 @@ try:
     from send_tele_message import send_message
     load_dotenv()
 except:
+    os.system('nohup python3 immg.py -u &')
     os.system('pip3 install -r requirements.txt')
 
-username = os.getenv('USERNAME_IMMI')
-password = os.getenv('PASSWORD_IMMI')
-baotinhtrang = os.getenv('baotinhtrang')
-baomo = os.getenv('baomo')
-#username = 'changhapham9@gmail.com'
-data = {
-    'username' :username,
-    'password' :password,
-}
-
-send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
+try:
+    username = os.getenv('USERNAME_IMMI')
+    password = os.getenv('PASSWORD_IMMI')
+    baotinhtrang = os.getenv('baotinhtrang')
+    baomo = os.getenv('baomo')
+    #username = 'changhapham9@gmail.com'
+    data = {
+        'username' :username,
+        'password' :password,
+    }
+    send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
+except:
+    os.system('nohup python3 immg.py -u &')
 
 def download_audio_banmai():
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    web = webdriver.Chrome(options=options)
-    # web = webdriver.Chrome()    
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("headless")
+    # web = webdriver.Chrome(options=options)
+    web = webdriver.Chrome()    
     web.get('https://online.immi.gov.au/lusc/login')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
