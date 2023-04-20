@@ -71,7 +71,7 @@ def download_audio_banmai():
             print('not open')
             print('****************')
             print("Current Time =", formatted_datetime)
-            time.sleep(50)
+            time.sleep(20)
             continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
             continue_btn_page1.click()
             time.sleep(4)
