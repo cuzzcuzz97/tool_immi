@@ -42,12 +42,25 @@ def download_audio_banmai():
     login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
     login.click()
     time.sleep(4)
-    continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
-    continue_btn.click()
-    time.sleep(4)
-    application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
-    application_edit.click()
-    time.sleep(5)
+    while True:
+        try:
+            continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
+            continue_btn.click()
+            time.sleep(4)
+            break
+        except:
+            ...
+    while True:
+        try:
+            step = web.find_element('xpath',"//*[contains(text(), '/16')]")
+            print(step)
+            if step.text == '1/16':
+                break
+        except:
+            print('cant find element')
+            application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
+            application_edit.click()
+            time.sleep(5)
     # page 1
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
@@ -77,10 +90,10 @@ def download_audio_banmai():
                 send_message(f'\U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
                 running(f'Trang {step.text} : {formatted_datetime}','status')
             warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
-            print(warning.text)
-            print('****************')
-            print('not open')
-            print('****************')
+            # print(warning.text)
+            # print('****************')
+            # print('not open')
+            # print('****************')
             print("Current Time =", formatted_datetime)
             time.sleep(20)
             continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
