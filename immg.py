@@ -27,6 +27,7 @@ try:
     }
     send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 except:
+    ...
     os.system('nohup python3 immg.py -u &')
 
 def download_audio_banmai():
@@ -46,22 +47,19 @@ def download_audio_banmai():
         try:
             continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
             continue_btn.click()
-            time.sleep(4)
             break
         except:
             ...
     while True:
         try:
-            step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-            print(step)
-            if step.text == '1/16':
-                break
-        except:
-            print('cant find element')
+            time.sleep(5)
             application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
             application_edit.click()
-            time.sleep(5)
+            break
+        except:
+            print('cant find element')
     # page 1
+    print('step step')
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
     time.sleep(4)
