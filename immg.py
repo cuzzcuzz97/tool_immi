@@ -31,18 +31,23 @@ except:
     os.system('nohup python3 immg.py -u &')
 
 def download_audio_banmai():
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    web = webdriver.Chrome(options=options)
-    # web = webdriver.Chrome()    
-    web.get('https://online.immi.gov.au/lusc/login')
-    username = web.find_element('xpath','//*[@id="username"]')
-    username.send_keys(data['username'])
-    password = web.find_element('xpath','//*[@id="password"]')
-    password.send_keys(data['password'])
-    login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
-    login.click()
-    time.sleep(4)
+    while True:
+        try:
+            options = webdriver.ChromeOptions()
+            options.add_argument("headless")
+            web = webdriver.Chrome(options=options)
+            # web = webdriver.Chrome()
+            web.get('https://online.immi.gov.au/lusc/login')
+            username = web.find_element('xpath','//*[@id="username"]')
+            username.send_keys(data['username'])
+            password = web.find_element('xpath','//*[@id="password"]')
+            password.send_keys(data['password'])
+            login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
+            login.click()
+            time.sleep(4)
+            break
+        except:
+            ...
     while True:
         try:
             continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
