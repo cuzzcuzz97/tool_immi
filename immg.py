@@ -11,7 +11,7 @@ try:
     import requests
     from send_tele_message import send_message
     load_dotenv()
-except Exception as e:
+except:
     os.system('nohup python3 immg.py -u &')
     os.system('pip3 install -r requirements.txt')
 
@@ -29,7 +29,6 @@ try:
 except Exception as e:
     print(e)
     os.system('nohup python3 immg.py -u &')
-    ...
 
 def download_audio_banmai():
     time.sleep(4)
@@ -37,7 +36,7 @@ def download_audio_banmai():
     options.add_argument("headless")
     web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
-    web.get('https://online.immi.gov.au/lusc/login')
+    web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
     password = web.find_element('xpath','//*[@id="password"]')
@@ -63,6 +62,7 @@ def download_audio_banmai():
             print('cant find element')
     # page 1
     print('step step')
+    time.sleep(4)
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
     time.sleep(4)
@@ -127,5 +127,4 @@ except Exception as e:
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
     os.system('nohup python3 immg.py -u &')
-print('openning')
 
