@@ -34,6 +34,7 @@ except Exception as e:
 def download_audio_banmai():
     while True:
         try:
+            time.sleep(4)
             options = webdriver.ChromeOptions()
             options.add_argument("headless")
             web = webdriver.Chrome(options=options)
