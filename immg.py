@@ -11,7 +11,7 @@ try:
     import requests
     from send_tele_message import send_message
     load_dotenv()
-except:
+except Exception as e:
     os.system('nohup python3 immg.py -u &')
     os.system('pip3 install -r requirements.txt')
 
@@ -26,9 +26,10 @@ try:
         'password' :password,
     }
     send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
-except:
-    ...
+except Exception as e:
+    print(e)
     os.system('nohup python3 immg.py -u &')
+    ...
 
 def download_audio_banmai():
     while True:
@@ -46,14 +47,15 @@ def download_audio_banmai():
             login.click()
             time.sleep(4)
             break
-        except:
-            ...
+        except Exception as e:
+            print(e)
     while True:
         try:
             continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
             continue_btn.click()
             break
-        except:
+        except Exception as e:
+            print(e)
             ...
     while True:
         try:
@@ -61,7 +63,8 @@ def download_audio_banmai():
             application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
             application_edit.click()
             break
-        except:
+        except Exception as e:
+            print(e)
             print('cant find element')
     # page 1
     print('step step')
@@ -103,7 +106,8 @@ def download_audio_banmai():
             continue_btn_page1.click()
             time.sleep(4)
             warning = 'yes'
-        except:
+        except Exception as e:
+            print(e)
             break
     if step.text == '5/16':
         print('step: ', step.text)
