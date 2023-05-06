@@ -55,7 +55,7 @@ except Exception as e:
     os.system('nohup python3 immitest.py -u &')
 
 def download_audio_banmai():
-    time.sleep(4)
+    time.sleep(3)
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
     options.add_argument("--disable-dev-shm-usage")
