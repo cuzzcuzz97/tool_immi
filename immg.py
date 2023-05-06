@@ -32,10 +32,11 @@ except Exception as e:
 
 def download_audio_banmai():
     time.sleep(4)
-    # options = webdriver.ChromeOptions()
-    # options.add_argument("headless")
-    # web = webdriver.Chrome(options=options)
-    web = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+    options.addArguments("--disable-dev-shm-usage")
+    web = webdriver.Chrome(options=options)
+    # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
