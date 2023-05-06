@@ -32,12 +32,10 @@ except Exception as e:
 
 def download_audio_banmai():
     time.sleep(4)
-    options = webdriver.ChromeOptions()
-    # options = webdriver.FirefoxOptions()
-    options.add_argument("headless")
-    # web = webdriver.Firefox(options=options)
-    web = webdriver.Chrome(options=options)
-    # web = webdriver.Chrome()
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("headless")
+    # web = webdriver.Chrome(options=options)
+    web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
@@ -46,22 +44,11 @@ def download_audio_banmai():
     login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
     login.click()
     time.sleep(4)
-    while True:
-        try:
-            continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
-            continue_btn.click()
-            break
-        except Exception as e:
-            print(e)
-    while True:
-        try:
-            time.sleep(5)
-            application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
-            application_edit.click()
-            break
-        except Exception as e:
-            print(e)
-            print('cant find element')
+    continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
+    continue_btn.click()
+    time.sleep(5)
+    application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
+    application_edit.click()
     # page 1
     print('step step')
     time.sleep(4)
