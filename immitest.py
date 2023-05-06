@@ -9,12 +9,12 @@ try:
     from dotenv import load_dotenv
     import telebot
     import requests
-    from send_tele_message import send_message
     load_dotenv()
 except:
     os.system('pip3 install -r requirements.txt')
     os.system('nohup python3 immitest.py -u &')
-
+    
+from send_tele_message import send_message
 try:
     username = os.getenv('USERNAME_IMMI')
     password = os.getenv('PASSWORD_IMMI')
