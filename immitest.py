@@ -13,8 +13,32 @@ try:
 except:
     os.system('pip3 install -r requirements.txt')
     os.system('nohup python3 immitest.py -u &')
-    
-from send_tele_message import send_message
+
+# from send_tele_message import send_message
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+import requests
+
+API_KEY = os.getenv('API_TELEGRAM')
+chat_id = os.getenv("CHAT_ID_KEY")
+baotinhtrang = os.getenv("baotinhtrang")
+baomo = os.getenv("baomo")
+message = "Hello, world!"
+
+def send_message(message,chat_id):
+    url = f"https://api.telegram.org/bot{API_KEY}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": message
+    }
+    response = requests.post(url, data=payload)
+    if response.status_code == 200:
+        print("Message sent successfully!")
+    else:
+        print("Error sending message:", response.status_code)
+
+
 try:
     username = os.getenv('USERNAME_IMMI')
     password = os.getenv('PASSWORD_IMMI')
@@ -113,4 +137,3 @@ except Exception as e:
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
     os.system('nohup python3 immitest.py -u &')
-
