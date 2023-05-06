@@ -34,7 +34,7 @@ def download_audio_banmai():
     time.sleep(4)
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
-    options.addArguments("--disable-dev-shm-usage")
+    options.add_argument("--disable-dev-shm-usage")
     web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
