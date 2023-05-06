@@ -33,7 +33,9 @@ except Exception as e:
 def download_audio_banmai():
     time.sleep(4)
     options = webdriver.ChromeOptions()
+    # options = webdriver.FirefoxOptions()
     options.add_argument("headless")
+    # web = webdriver.Firefox(options=options)
     web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
