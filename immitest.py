@@ -12,8 +12,8 @@ try:
     from send_tele_message import send_message
     load_dotenv()
 except:
-    # os.system('nohup python3 immg.py -u &')
     os.system('pip3 install -r requirements.txt')
+    os.system('nohup python3 immitest.py -u &')
 
 try:
     username = os.getenv('USERNAME_IMMI')
@@ -28,7 +28,7 @@ try:
     send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 except Exception as e:
     print(e)
-    # os.system('nohup python3 immg.py -u &')
+    os.system('nohup python3 immitest.py -u &')
 
 def download_audio_banmai():
     time.sleep(4)
@@ -97,13 +97,13 @@ def download_audio_banmai():
             send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
             time.sleep(3)
         time.sleep(60)
-        # os.system('nohup python3 immg.py -u &')
+        os.system('nohup python3 immitest.py -u &')
     else:
         send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
         running(f'xảy ra sự cố chờ trong giây lát ','status')
         # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
-        # os.system('nohup python3 immg.py -u &')
+        os.system('nohup python3 immitest.py -u &')
 try:
     download_audio_banmai()
 except Exception as e:
@@ -112,5 +112,5 @@ except Exception as e:
     running(f'xảy ra sự cố chờ trong giây lát ','status')
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(60)
-    # os.system('nohup python3 immg.py -u &')
+    os.system('nohup python3 immitest.py -u &')
 
