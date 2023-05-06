@@ -7,13 +7,34 @@ try:
     import pytz
     tz = pytz.timezone('Asia/Bangkok')
     from dotenv import load_dotenv
-    import telebot
     import requests
-    from send_tele_message import send_message
+    # from send_tele_message import send_message
     load_dotenv()
 except Exception as e:
     print(e)
     os.system('nohup python3 immitest.py -u &')
+
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+import requests
+
+API_KEY = os.getenv('API_TELEGRAM')
+chat_id = os.getenv("CHAT_ID_KEY")
+baotinhtrang = os.getenv("baotinhtrang")
+baomo = os.getenv("baomo")
+message = "Hello, world!"
+def send_message(message,chat_id):
+    url = f"https://api.telegram.org/bot{API_KEY}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": message
+    }
+    response = requests.post(url, data=payload)
+    if response.status_code == 200:
+        print("Message sent successfully!")
+    else:
+        print("Error sending message:", response.status_code)
 
 try:
     username = os.getenv('USERNAME_IMMI')
