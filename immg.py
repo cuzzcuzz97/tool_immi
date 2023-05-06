@@ -32,10 +32,10 @@ except Exception as e:
 
 def download_audio_banmai():
     time.sleep(4)
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    web = webdriver.Chrome(options=options)
-    # web = webdriver.Chrome()
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("headless")
+    # web = webdriver.Chrome(options=options)
+    web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
     username.send_keys(data['username'])
@@ -43,30 +43,23 @@ def download_audio_banmai():
     password.send_keys(data['password'])
     login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
     login.click()
-    time.sleep(4)
     continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
     continue_btn.click()
-    time.sleep(5)
     application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
     application_edit.click()
     # page 1
     print('step step')
-    time.sleep(4)
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
-    time.sleep(4)
     # page 2
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
-    time.sleep(4)
     # page 3
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
-    time.sleep(4)
     # page 4
     continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
     continue_btn_page1.click()
-    time.sleep(4)
     warning = 'yes'
         
     while len(warning) > 2:
@@ -74,7 +67,7 @@ def download_audio_banmai():
             now = datetime.now()
             formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
             step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-            print('step: ', step.text)
+            # print('step: ', step.text)
             if step.text == '4/16':
                 print('sending message')
                 send_message(f'\U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
@@ -84,7 +77,7 @@ def download_audio_banmai():
             # print('****************')
             # print('not open')
             # print('****************')
-            print("Current Time =", formatted_datetime)
+            # print("Current Time =", formatted_datetime)
             time.sleep(20)
             continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
             continue_btn_page1.click()
