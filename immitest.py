@@ -9,11 +9,11 @@ try:
     from dotenv import load_dotenv
     import telebot
     import requests
+    from send_tele_message import send_message
     load_dotenv()
 except Exception as e:
     print(e)
     os.system('nohup python3 immitest.py -u &')
-    from send_tele_message import send_message
 
 try:
     username = os.getenv('USERNAME_IMMI')
