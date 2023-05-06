@@ -1,5 +1,8 @@
 try:
     from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.chrome.options import Options
+    from webdriver_manager.chrome import ChromeDriverManager
     import os
     import time
     from testapi import running
@@ -24,6 +27,7 @@ chat_id = os.getenv("CHAT_ID_KEY")
 baotinhtrang = os.getenv("baotinhtrang")
 baomo = os.getenv("baomo")
 message = "Hello, world!"
+
 def send_message(message,chat_id):
     url = f"https://api.telegram.org/bot{API_KEY}/sendMessage"
     payload = {
@@ -53,10 +57,13 @@ except Exception as e:
 
 def download_audio_banmai():
     time.sleep(4)
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    options.add_argument("--disable-dev-shm-usage")
-    web = webdriver.Chrome(options=options)
+    options = Options()
+    options.add_experimental_option("detach", True)
+    web = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("headless")
+    # options.add_argument("--disable-dev-shm-usage")
+    # web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
@@ -103,7 +110,7 @@ def download_audio_banmai():
             # print('not open')
             # print('****************')
             # print("Current Time =", formatted_datetime)
-            time.sleep(20)
+            time.sleep(40)
             continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
             continue_btn_page1.click()
             time.sleep(4)
