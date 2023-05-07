@@ -59,7 +59,7 @@ def download_audio_banmai():
     time.sleep(4)
     options = Options()
     options.add_argument("headless")
-    # options.add_experimental_option("detach", True)
+    options.add_experimental_option("detach", True)
     web = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
     # options = webdriver.ChromeOptions()
     # options.add_argument("--disable-dev-shm-usage")
