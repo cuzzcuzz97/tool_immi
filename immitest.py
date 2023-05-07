@@ -95,6 +95,8 @@ def download_audio_banmai():
             print('enter checking mode')
             now = datetime.now()
             formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
+            continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
+            continue_btn_page1.click()
             step = web.find_element('xpath',"//*[contains(text(), '/16')]")
             print('step: ', step.text)
             if step.text == '4/16':
@@ -102,8 +104,8 @@ def download_audio_banmai():
                 send_message(f'V1.2 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
                 running(f'V1.2 Trang {step.text} : {formatted_datetime}','status')
                 time.sleep(3)
-                continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
-                continue_btn_page1.click()
+            if step.text != '4/16':
+                break
             try:
                 warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
             except:
@@ -114,9 +116,6 @@ def download_audio_banmai():
             # print('****************')
             # print("Current Time =", formatted_datetime)
             time.sleep(30)
-            continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
-            continue_btn_page1.click()
-            time.sleep(4)
             warning = 'yes'
         except Exception as e:
             print(e)
