@@ -101,16 +101,19 @@ def download_audio_banmai():
                 print('sending message')
                 send_message(f'V1.2 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
                 running(f'V1.2 Trang {step.text} : {formatted_datetime}','status')
+                time.sleep(3)
+                continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
+                continue_btn_page1.click()
             try:
                 warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
             except:
-                ...
+                break
             # print(warning.text)
             # print('****************')
             # print('not open')
             # print('****************')
             # print("Current Time =", formatted_datetime)
-            time.sleep(40)
+            time.sleep(30)
             continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
             continue_btn_page1.click()
             time.sleep(4)
