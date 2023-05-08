@@ -15,7 +15,7 @@ try:
     load_dotenv()
 except Exception as e:
     print(e)
-    os.system('nohup python3 immitest.py -u &')
+    # os.system('nohup python3 immitest.py -u &')
 
 import os 
 from dotenv import load_dotenv
@@ -53,17 +53,17 @@ try:
     send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 except Exception as e:
     print(e)
-    os.system('nohup python3 immitest.py -u &')
+    # os.system('nohup python3 immitest.py -u &')
 
 def download_audio_banmai():
     time.sleep(4)
     options = Options()
     options.add_argument("headless")
-    options.add_experimental_option("detach", True)
-    web = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+    # options.add_experimental_option("detach", True)
+    # web = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
     # options = webdriver.ChromeOptions()
     # options.add_argument("--disable-dev-shm-usage")
-    # web = webdriver.Chrome(options=options)
+    web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
     username = web.find_element('xpath','//*[@id="username"]')
@@ -87,6 +87,11 @@ def download_audio_banmai():
             if step.text == '4/16':
                 break
             continue_btn_page1.click()
+        except:
+            ...
+        try:
+            warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
+            break
         except:
             ...
     warning = 'yes'
@@ -127,13 +132,15 @@ def download_audio_banmai():
             send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
             time.sleep(3)
         time.sleep(60)
-        os.system('nohup python3 immitest.py -u &')
+        return download_audio_banmai()
+        # os.system('nohup python3 immitest.py -u &')
     else:
         send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
         running(f'xảy ra sự cố chờ trong giây lát ','status')
         # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
         time.sleep(60)
-        os.system('nohup python3 immitest.py -u &')
+        return download_audio_banmai()
+        # os.system('nohup python3 immitest.py -u &')
 try:
     download_audio_banmai()
 except Exception as e:
@@ -141,6 +148,7 @@ except Exception as e:
     send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
     running(f'xảy ra sự cố chờ trong giây lát ','status')
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-    time.sleep(60)
-    os.system('nohup python3 immitest.py -u &')
+    time.sleep(10)
+    download_audio_banmai()
+    # os.system('nohup python3 immitest.py -u &')
 
