@@ -2,3 +2,4 @@ selenium
 python-dotenv
 pyTelegramBotAPI
 pytz
+webdriver_manager
