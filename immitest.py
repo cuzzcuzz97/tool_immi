@@ -149,6 +149,9 @@ except Exception as e:
     running(f'xảy ra sự cố chờ trong giây lát ','status')
     # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
     time.sleep(10)
-    download_audio_banmai()
+    try:
+        download_audio_banmai()
+    except:
+        download_audio_banmai()
     # os.system('nohup python3 immitest.py -u &')
 
