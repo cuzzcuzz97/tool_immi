@@ -60,6 +60,7 @@ def download_audio_banmai():
     options = Options()
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
+    options.add_argument("--disable-gpu")
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("headless")
     # options.add_experimental_option("detach", True)
@@ -128,22 +129,26 @@ def download_audio_banmai():
         except Exception as e:
             print(e)
             break
-    if step.text == '5/16':
-        print('step: ', step.text)
-        for i in range(40):
-            running('success','not status')
-            send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
-            time.sleep(3)
-        time.sleep(60)
+    try:
+        step = web.find_element('xpath',"//*[contains(text(), '/16')]")
+        if step.text == '5/16':
+            print('step: ', step.text)
+            for i in range(40):
+                running('success','not status')
+                send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
+                time.sleep(3)
+            time.sleep(60)
+            return download_audio_banmai()
+            # os.system('nohup python3 immitest.py -u &')
+        else:
+            send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
+            running(f'xảy ra sự cố chờ trong giây lát ','status')
+            # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
+            time.sleep(60)
+            return download_audio_banmai()
+            # os.system('nohup python3 immitest.py -u &')
+    except:
         return download_audio_banmai()
-        # os.system('nohup python3 immitest.py -u &')
-    else:
-        send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
-        running(f'xảy ra sự cố chờ trong giây lát ','status')
-        # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-        time.sleep(60)
-        return download_audio_banmai()
-        # os.system('nohup python3 immitest.py -u &')
 try:
     download_audio_banmai()
 except Exception as e:
