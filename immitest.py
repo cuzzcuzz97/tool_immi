@@ -40,23 +40,18 @@ def send_message(message,chat_id):
     else:
         print("Error sending message:", response.status_code)
 
-try:
-    username = os.getenv('USERNAME_IMMI')
-    password = os.getenv('PASSWORD_IMMI')
-    baotinhtrang = os.getenv('baotinhtrang')
-    baomo = os.getenv('baomo')
-    #username = 'changhapham9@gmail.com'
-    data = {
-        'username' :username,
-        'password' :password,
-    }
-    send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
-except Exception as e:
-    print(e)
-    # os.system('nohup python3 immitest.py -u &')
+username = os.getenv('USERNAME_IMMI')
+password = os.getenv('PASSWORD_IMMI')
+baotinhtrang = os.getenv('baotinhtrang')
+baomo = os.getenv('baomo')
+# username = 'changhapham9@gmail.com'
+data = {
+    'username' :username,
+    'password' :password,
+}
+send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 
 def download_audio_banmai():
-    time.sleep(4)
     options = Options()
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
@@ -78,88 +73,72 @@ def download_audio_banmai():
     login.click()
     continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
     continue_btn.click()
-    while True:
-        try:
-            application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
-            application_edit.click()
-        except:
-            ...
-        try:
-            continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
-            time.sleep(1)
-            step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-            if step.text == '4/16':
-                break
-            continue_btn_page1.click()
-        except:
-            ...
-        try:
-            warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
-            break
-        except:
-            ...
-    warning = 'yes'
-    while len(warning) > 2:
-        try:
-            print('enter checking mode')
-            now = datetime.now()
-            formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
-            continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
-            continue_btn_page1.click()
-            step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-            print('step: ', step.text)
-            if step.text == '4/16':
-                print('sending message')
-                send_message(f'V1.2 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
-                running(f'V1.2 Trang {step.text} : {formatted_datetime}','status')
-                time.sleep(3)
-            if step.text != '4/16':
-                break
-            try:
-                warning = web.find_element('xpath',"//*[contains(text(), 'An error has occurred')]")
-            except:
-                break
-            # print(warning.text)
-            # print('****************')
-            # print('not open')
-            # print('****************')
-            # print("Current Time =", formatted_datetime)
-            time.sleep(30)
-            warning = 'yes'
-        except Exception as e:
-            print(e)
-            break
     try:
-        step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-        if step.text == '5/16':
-            print('step: ', step.text)
-            for i in range(40):
-                running('success','not status')
-                send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
-                time.sleep(3)
-            time.sleep(60)
-            return download_audio_banmai()
-            # os.system('nohup python3 immitest.py -u &')
-        else:
-            send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
-            running(f'xảy ra sự cố chờ trong giây lát ','status')
-            # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-            time.sleep(60)
-            return download_audio_banmai()
-            # os.system('nohup python3 immitest.py -u &')
-    except:
+        step_2 = False
+        while True:
+            time.sleep(4)
+            if not step_2:
+                try:
+                    time.sleep(4)
+                    application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
+                    application_edit.click()
+                except:
+                    web.get('https://online.immi.gov.au/')
+                    myapplicant_btn = web.find_element('xpath','/html/body/form/div[1]/button[1]')
+                    myapplicant_btn.click()
+                    time.sleep(4)
+                    try:
+                        application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
+                        application_edit.click()
+                    except:
+                        ...
+            try:
+                time.sleep(2)
+                now = datetime.now()
+                formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
+                continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
+                step = web.find_element('xpath',"//*[contains(text(), '/16')]")
+                print(f'trang : {step.text}')
+                time.sleep(1)
+                if step.text == '4/16':
+                    send_message(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
+                elif step.text == '5/16':
+                    for i in range(40):
+                        now = datetime.now()
+                        formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
+                        # running('success','not status')
+                        send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
+                        send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baotinhtrang)
+                        # send_message(f'test app mn thong cam {formatted_datetime}',baotinhtrang)
+                        time.sleep(1)
+                continue_btn_page1.click()
+                step_2 = True
+            except Exception as e:
+                print(e)
+                web.get('https://online.immi.gov.au/')
+                step_2 = False
+                time.sleep(4)
+    except Exception as e2:
+        print(e2)
+        time.sleep(2)
+        web.close()
         return download_audio_banmai()
+    # if step.text == '5/16':
+    #     print('step: ', step.text)
+        # for i in range(40):
+        #     running('success','not status')
+        #     # send_message(f'\U00002705\U00002705\U00002705Trang 5 kìa vô mau vô mau : {formatted_datetime}\U00002705\U00002705\U00002705',baomo)
+        #     send_message(f'test app mn thong cam',baotinhtrang)
+        #     time.sleep(1)
+    #     time.sleep(10)
+    #     return download_audio_banmai()
+    # else:
+    #     send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
+    #     running(f'xảy ra sự cố chờ trong giây lát ','status')
+    #     time.sleep(10)
+    #     return download_audio_banmai()
 try:
     download_audio_banmai()
-except Exception as e:
-    print(e)
-    send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
-    running(f'xảy ra sự cố chờ trong giây lát ','status')
-    # running(f'xảy ra sự cố , gọi admin để fix gấp ','error')
-    time.sleep(10)
-    try:
-        download_audio_banmai()
-    except:
-        download_audio_banmai()
-    # os.system('nohup python3 immitest.py -u &')
-
+except Exception as open_f_error:
+    print(open_f_error)
+    download_audio_banmai()
