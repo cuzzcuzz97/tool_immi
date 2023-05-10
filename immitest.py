@@ -54,7 +54,7 @@ send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 def download_audio_banmai():
     options = Options()
     options.add_argument('--no-sandbox')
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument("--disable-gpu")
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("headless")
@@ -76,7 +76,6 @@ def download_audio_banmai():
     try:
         step_2 = False
         while True:
-            time.sleep(4)
             if not step_2:
                 try:
                     time.sleep(4)
@@ -137,8 +136,9 @@ def download_audio_banmai():
     #     running(f'xảy ra sự cố chờ trong giây lát ','status')
     #     time.sleep(10)
     #     return download_audio_banmai()
-try:
-    download_audio_banmai()
-except Exception as open_f_error:
-    print(open_f_error)
-    download_audio_banmai()
+while True:
+    time.sleep(10)
+    try:
+        download_audio_banmai()
+    except Exception as open_f_error:
+        print(open_f_error)
