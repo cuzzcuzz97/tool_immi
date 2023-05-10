@@ -49,9 +49,9 @@ data = {
     'username' :username,
     'password' :password,
 }
-send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 
 def download_audio_banmai():
+    send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
     options = Options()
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
@@ -76,6 +76,7 @@ def download_audio_banmai():
     try:
         step_2 = False
         while True:
+            time.sleep(4)
             if not step_2:
                 try:
                     time.sleep(4)
