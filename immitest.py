@@ -54,7 +54,7 @@ send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
 def download_audio_banmai():
     options = Options()
     options.add_argument('--no-sandbox')
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument("--disable-gpu")
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("headless")
