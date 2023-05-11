@@ -138,8 +138,9 @@ def download_audio_banmai():
     #     time.sleep(10)
     #     return download_audio_banmai()
 while True:
-    time.sleep(10)
     try:
         download_audio_banmai()
     except Exception as open_f_error:
+        os.system('pkill chrome')
         print(open_f_error)
+        time.sleep(10)
