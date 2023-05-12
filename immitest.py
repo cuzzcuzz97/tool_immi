@@ -51,6 +51,7 @@ data = {
 }
 
 def download_audio_banmai():
+    os.system('pkill chrome')
     send_message(f'Khởi chạy lại phần mềm',baotinhtrang)
     options = Options()
     options.add_argument('--no-sandbox')
@@ -65,14 +66,19 @@ def download_audio_banmai():
     web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
-    username = web.find_element('xpath','//*[@id="username"]')
-    username.send_keys(data['username'])
-    password = web.find_element('xpath','//*[@id="password"]')
-    password.send_keys(data['password'])
-    login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
-    login.click()
-    continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
-    continue_btn.click()
+    try:
+        username = web.find_element('xpath','//*[@id="username"]')
+        username.send_keys(data['username'])
+        password = web.find_element('xpath','//*[@id="password"]')
+        password.send_keys(data['password'])
+        login = web.find_element('xpath','/html/body/form/div/div[2]/button[2]')
+        login.click()
+        continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
+        continue_btn.click()
+    except:
+        web.close()
+        os.system('pkill chrome')
+        return download_audio_banmai()
     try:
         step_2 = False
         while True:
@@ -122,6 +128,7 @@ def download_audio_banmai():
         print(e2)
         time.sleep(2)
         web.close()
+        os.system('pkill chrome')
         return download_audio_banmai()
     # if step.text == '5/16':
     #     print('step: ', step.text)
