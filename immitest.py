@@ -77,10 +77,10 @@ def download_audio_banmai():
         login.click()
         continue_btn = web.find_element('xpath','/html/body/form/div/div/button')
         continue_btn.click()
-    except:
+    except Exception as error:
         web.close()
         os.system('pkill chrome')
-        return download_audio_banmai()
+        raise error
     try:
         step_2 = False
         while True:
@@ -110,10 +110,10 @@ def download_audio_banmai():
                 step = web.find_element('xpath',"//*[contains(text(), '/16')]")
                 count += 1
                 if count // 1000:
-                    print(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}')
+                    print(f'v1.4 \U0000274C Trang {step.text} : {formatted_datetime}')
                 time.sleep(1)
                 if step.text == '4/16':
-                    send_message(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
+                    send_message(f'v1.4 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
                 elif step.text == '5/16':
                     for i in range(40):
                         now = datetime.now()
