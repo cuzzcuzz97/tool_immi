@@ -151,6 +151,5 @@ while True:
         os.system('pkill chrome')
         print(open_f_error)
         time.sleep(5)
-        os.system('killall python3')
         os.system('nohup python3 immitest.py -u &')
         break
