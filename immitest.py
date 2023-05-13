@@ -36,7 +36,8 @@ def send_message(message,chat_id):
     }
     response = requests.post(url, data=payload)
     if response.status_code == 200:
-        print("Message sent successfully!")
+        ...
+        # print("Message sent successfully!")
     else:
         print("Error sending message:", response.status_code)
 
@@ -66,6 +67,7 @@ def download_audio_banmai():
     web = webdriver.Chrome(options=options)
     # web = webdriver.Chrome()
     web.get('https://online.immi.gov.au/')
+    count = 0
     try:
         username = web.find_element('xpath','//*[@id="username"]')
         username.send_keys(data['username'])
@@ -99,12 +101,15 @@ def download_audio_banmai():
                     except:
                         ...
             try:
-                time.sleep(2)
+                time.sleep(10)
                 now = datetime.now()
                 formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
                 continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
                 step = web.find_element('xpath',"//*[contains(text(), '/16')]")
-                print(f'trang : {step.text}')
+                count += 1
+                print(count)
+                if count // 1000:
+                    print(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}')
                 time.sleep(1)
                 if step.text == '4/16':
                     send_message(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}',baotinhtrang)
@@ -129,7 +134,9 @@ def download_audio_banmai():
         time.sleep(2)
         web.close()
         os.system('pkill chrome')
-        return download_audio_banmai()
+        time.sleep(5)
+        os.system('nohup python3 immitest.py -u &')
+        raise e2
     # if step.text == '5/16':
     #     print('step: ', step.text)
         # for i in range(40):
