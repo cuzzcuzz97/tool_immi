@@ -90,24 +90,25 @@ def download_audio_banmai():
                     time.sleep(4)
                     application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
                     application_edit.click()
-                except:
-                    web.get('https://online.immi.gov.au/')
-                    myapplicant_btn = web.find_element('xpath','/html/body/form/div[1]/button[1]')
-                    myapplicant_btn.click()
-                    time.sleep(4)
-                    try:
-                        application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
-                        application_edit.click()
-                    except:
-                        ...
+                except Exception as error_while:
+                    raise error_while
+                    # web.get('https://online.immi.gov.au/')
+                    # time.sleep(2)
+                    # myapplicant_btn = web.find_element('xpath','/html/body/form/div[1]/button[1]')
+                    # myapplicant_btn.click()
+                    # time.sleep(4)
+                    # try:
+                    #     application_edit = web.find_element('xpath','//*[@id="defaultActionPanel_0_1"]')
+                    #     application_edit.click()
+                    # except:
+                    #     ...
             try:
-                time.sleep(10)
+                time.sleep(5)
                 now = datetime.now()
                 formatted_datetime = now.strftime('Ngày %d tháng %m năm %Y thời gian %H:%M:%S')
                 continue_btn_page1 = web.find_element('xpath','//button[@title="Go to next page"]')
                 step = web.find_element('xpath',"//*[contains(text(), '/16')]")
                 count += 1
-                print(count)
                 if count // 1000:
                     print(f'v1.3 \U0000274C Trang {step.text} : {formatted_datetime}')
                 time.sleep(1)
@@ -131,7 +132,6 @@ def download_audio_banmai():
                 time.sleep(4)
     except Exception as e2:
         print(e2)
-        time.sleep(2)
         web.close()
         os.system('pkill chrome')
         time.sleep(5)
@@ -146,7 +146,7 @@ def download_audio_banmai():
     #     time.sleep(10)
     #     return download_audio_banmai()
     # else:
-    #     send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
+        # send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
     #     running(f'xảy ra sự cố chờ trong giây lát ','status')
     #     time.sleep(10)
     #     return download_audio_banmai()
@@ -154,6 +154,7 @@ while True:
     try:
         download_audio_banmai()
     except Exception as open_f_error:
+        send_message(f'\U00002705xảy ra sự cố chờ trong giây lát\U00002705',baotinhtrang)
         os.system('pkill chrome')
         print(open_f_error)
         time.sleep(5)
