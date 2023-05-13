@@ -135,7 +135,6 @@ def download_audio_banmai():
         web.close()
         os.system('pkill chrome')
         time.sleep(5)
-        os.system('nohup python3 immitest.py -u &')
         raise e2
     # if step.text == '5/16':
     #     print('step: ', step.text)
